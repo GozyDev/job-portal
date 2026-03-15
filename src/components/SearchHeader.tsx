@@ -35,7 +35,7 @@ export default function SearchHeader({
         {/* Location Select */}
         <div className="flex items-center px-4 min-w-[200px]">
           <MapPin className="text-gray-400 mr-3" size={20} />
-          <select className="w-full py-4 outline-none bg-transparent text-slate-700 font-medium appearance-none cursor-pointer">
+          <select className="w-full p-4 outline-none bg-transparent text-slate-700 font-medium appearance-none cursor-pointer text-sm">
             <option>France, Italy</option>
             <option>Remote</option>
             <option>United States</option>
