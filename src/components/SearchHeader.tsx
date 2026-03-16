@@ -1,10 +1,12 @@
 import { Search, MapPin } from "lucide-react";
-
+interface SearchHeaderProps {
+  onSearch: (txt: string) => void;
+  searchValue: string; // Added this prop
+}
 export default function SearchHeader({
   onSearch,
-}: {
-  onSearch: (txt: string) => void;
-}) {
+  searchValue,
+}: SearchHeaderProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 pt-16 pb-8 rounded text-center bg-[#f9fafc]">
       {/* Main Heading */}
@@ -28,6 +30,7 @@ export default function SearchHeader({
             type="text"
             className="w-full py-4 outline-none text-slate-700 placeholder:text-gray-400"
             placeholder="Job title or keyword"
+            value={searchValue}
             onChange={(e) => onSearch(e.target.value)}
           />
         </div>
