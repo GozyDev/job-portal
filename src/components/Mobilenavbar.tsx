@@ -60,7 +60,7 @@ export default function Navbar() {
               
               <div className="flex flex-col gap-8">
                 {/* Mobile Navigation Links */}
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 p-3">
                   <SheetClose asChild>
                     <Link to="/jobs" className="text-lg font-medium text-slate-800 hover:text-[#2563EB] transition-colors text-sm">
                       Find Jobs
