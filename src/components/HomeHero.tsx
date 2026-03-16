@@ -1,4 +1,4 @@
-import { Search, MapPin } from "lucide-react";
+import { Search, MapPin, MoveRight} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -43,7 +43,7 @@ export default function Hero() {
 
           {/* Search Button */}
           <Button className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-7 rounded-xl text-md font-semibold transition-all hover:shadow-lg hover:shadow-blue-200">
-            Search my job
+            FInd your job  <MoveRight />
           </Button>
         </div>
         <p className="text-md text-slate-500 mt-5 max-w-2xl">
