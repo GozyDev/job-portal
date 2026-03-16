@@ -126,7 +126,7 @@ export default function JobsPage() {
           searchValue={searchValue}
           onSearch={(val) => setSearchValue(val)}
         />
-        <section className="md:hidden px-3">
+        <section className="md:hidden px-3 py-5">
           <MobileFilters
             allActiveFilters={allActiveFilters}
             toggleFilter={toggleFilter}
