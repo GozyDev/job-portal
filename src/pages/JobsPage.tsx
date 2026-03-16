@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { getJobs } from "../services/jobService";
-import { X } from "lucide-react";
+import { ChevronLeft, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import SearchHeader from "../components/SearchHeader";
 import Filters from "../components/Filters";
@@ -16,6 +17,7 @@ export default function JobsPage() {
   });
   const [searchValue, setSearchValue] = useState("");
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -109,54 +111,61 @@ export default function JobsPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8 md:py-[100px] py-[50px]">
-      <SearchHeader
-        searchValue={searchValue}
-        onSearch={(val) => setSearchValue(val)}
-      />
-
-      <section className="md:hidden px-3">
-        <MobileFilters
-          allActiveFilters={allActiveFilters}
-          toggleFilter={toggleFilter}
-          activeFilters={activeFilters}
-          onToggle={toggleFilter}
-          counts={filterCounts}
-        />
-      </section>
-
-      {/* View Filters: The "Pill" Cards with Cancel Buttons */}
-      <section className="px-3 flex flex-wrap gap-2 items-center min-h-[40px]">
-        <span className="text-sm font-medium text-slate-500 mr-2">
-          view Filters:
-        </span>
-        {allActiveFilters.map(({ category, val }) => (
-          <div
-            key={val}
-            className="flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg border border-blue-100 text-sm font-medium capitalize"
-          >
-            {val}
-            <button
-              onClick={() => toggleFilter(category, val)}
-              className="hover:bg-blue-200 rounded p-0.5 transition-colors"
-            >
-              <X size={14} />
-            </button>
-          </div>
-        ))}
-      </section>
-
-      <div className="flex gap-5 px-3">
-        {/* Pass the state down so checkboxes stay synced with the pills */}
-        <Filters
-          activeFilters={activeFilters}
-          onToggle={toggleFilter}
-          counts={filterCounts}
-        />
-
-        {/* If filteredJobs is empty, JobList handles the "No records found" message */}
-        <JobList jobs={filteredJobs} />
+    <section className="md:py-[100px] py-[50px] space-y-8">
+      <div className="w-7xl mx-auto">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors "
+        >
+          <ChevronLeft size={20} />
+          <span>Go Back</span>
+        </button>
       </div>
-    </div>
+      <div className="max-w-7xl mx-auto  ">
+        <SearchHeader
+          searchValue={searchValue}
+          onSearch={(val) => setSearchValue(val)}
+        />
+        <section className="md:hidden px-3">
+          <MobileFilters
+            allActiveFilters={allActiveFilters}
+            toggleFilter={toggleFilter}
+            activeFilters={activeFilters}
+            onToggle={toggleFilter}
+            counts={filterCounts}
+          />
+        </section>
+        {/* View Filters: The "Pill" Cards with Cancel Buttons */}
+        <section className="px-3 flex flex-wrap gap-2 items-center min-h-[40px]">
+          <span className="text-sm font-medium text-slate-500 mr-2">
+            view Filters:
+          </span>
+          {allActiveFilters.map(({ category, val }) => (
+            <div
+              key={val}
+              className="flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg border border-blue-100 text-sm font-medium capitalize"
+            >
+              {val}
+              <button
+                onClick={() => toggleFilter(category, val)}
+                className="hover:bg-blue-200 rounded p-0.5 transition-colors"
+              >
+                <X size={14} />
+              </button>
+            </div>
+          ))}
+        </section>
+        <div className="flex gap-5 px-3">
+          {/* Pass the state down so checkboxes stay synced with the pills */}
+          <Filters
+            activeFilters={activeFilters}
+            onToggle={toggleFilter}
+            counts={filterCounts}
+          />
+          {/* If filteredJobs is empty, JobList handles the "No records found" message */}
+          <JobList jobs={filteredJobs} />
+        </div>
+      </div>
+    </section>
   );
 }
