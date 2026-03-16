@@ -6,10 +6,34 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Funnel} from "lucide-react";
+import { Funnel, X } from "lucide-react";
+interface MobileFiltersProps {
+  activeFilters: { type: string[]; experience: string[]; location: string[] };
+  onToggle: (category: string, value: string) => void;
+  counts: {
+    type: Record<string, number>;
+    experience: Record<string, number>;
+  };
+  toggleFilter: (category: string, value: string) => void;
+  allActiveFilters: { category: string; val: string }[];
+}
 
-export function MobileFilters() {
-  const FilterSection = ({ title, options }:{title:string,options:string[]}) => (
+export function MobileFilters({
+  activeFilters,
+  onToggle,
+  toggleFilter,
+  counts,
+  allActiveFilters,
+}: MobileFiltersProps) {
+  const FilterSection = ({
+    title,
+    options,
+    category,
+  }: {
+    title: string;
+    category: string;
+    options: string[];
+  }) => (
     <div className="mb-8">
       <div className="flex justify-between items-center mb-4 cursor-pointer group">
         <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
@@ -24,6 +48,10 @@ export function MobileFilters() {
             <div className="relative flex items-center justify-center">
               <input
                 type="checkbox"
+                checked={activeFilters[
+                  category as keyof typeof activeFilters
+                ].includes(option)}
+                onChange={() => onToggle(category, option)}
                 className="peer appearance-none w-4 h-4 border-2 border-slate-200 rounded-md checked:bg-blue-600 checked:border-blue-600 transition-all cursor-pointer"
               />
               <svg
@@ -44,7 +72,7 @@ export function MobileFilters() {
               {option}
             </span>
             <span className="ml-auto text-blue-400 text-[11px] font-semibold bg-blue-50 px-2 py-0.5 rounded">
-              246
+              {counts[category as "type" | "experience"]?.[option] || 0}
             </span>
           </label>
         ))}
@@ -60,33 +88,42 @@ export function MobileFilters() {
         </Button>
       </SheetTrigger>
       <SheetContent side="bottom" className="border p-3 overflow-hidden">
-        <SheetHeader className="mb-5 text-left">
+        <SheetHeader className=" text-left">
           <SheetTitle className="text-xl font-medium">Filters</SheetTitle>
         </SheetHeader>
+
+        <section className="px-3 flex flex-wrap gap-2 items-center min-h-[40px]">
+          <span className="text-sm font-medium text-slate-500 mr-2">
+            view Filters:
+          </span>
+          {allActiveFilters.map(({ category, val }) => (
+            <div
+              key={val}
+              className="flex items-center gap-2 bg-blue-50 text-blue-600 px-3 py-1.5 rounded-lg border border-blue-100 text-sm font-medium capitalize"
+            >
+              {val}
+              <button
+                onClick={() => toggleFilter(category, val)}
+                className="hover:bg-blue-200 rounded p-0.5 transition-colors"
+              >
+                <X size={14} />
+              </button>
+            </div>
+          ))}
+        </section>
 
         {/* Actual Filter Logic replacing the old profile text */}
         <div className="flex flex-col gap-2 h-[300px] overflow-y-scroll">
           <FilterSection
             title="Type of employment"
+            category="type"
             options={["Full-Time", "Part-Time", "Internship", "Remote"]}
           />
           <FilterSection
             title="Experience level"
-            options={["Entry/Junior", "Mid-level", "Senior"]}
+            category="experience"
+            options={["Entry", "Mid-level", "Senior"]}
           />
-          <FilterSection
-            title="Location"
-            options={["France", "Italy", "Remote", "USA"]}
-          />
-        </div>
-
-        <div className="mt-8 flex flex-col gap-3">
-          <Button className="w-full bg-blue-600 hover:bg-blue-700">
-            Apply Filters
-          </Button>
-          <Button variant="ghost" className="text-slate-500">
-            Reset All
-          </Button>
         </div>
       </SheetContent>
     </Sheet>

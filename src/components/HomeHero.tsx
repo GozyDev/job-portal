@@ -7,15 +7,10 @@ export default function Hero() {
     <section className="w-full py-16 md:py-24 pt-30 md:pt-30 px-4  max-w-7xl mx-auto">
       <div className="max-w-6xl flex flex-col text-left ">
         {/* Main Heading */}
-        <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">
+        <h1 className="text-4xl md:text-5xl font-medium text-slate-900 mb-6 tracking-tighter">
           Discover over{" "}
           <span className="text-blue-600">10,000+ Health Jobs</span>
         </h1>
-
-        {/* Subtext */}
-        <p className="text-lg text-slate-500 mb-5 max-w-2xl">
-          The first global platform for health job seekers
-        </p>
 
         {/* Search Container */}
         <div className="w-full max-w-4xl bg-white p-2 rounded-2xl shadow-xl shadow-slate-200/50 flex flex-col md:flex-row items-center gap-2 border border-slate-100">
@@ -51,6 +46,9 @@ export default function Hero() {
             Search my job
           </Button>
         </div>
+        <p className="text-md text-slate-500 mt-5 max-w-2xl">
+          The first global platform for health job seekers
+        </p>
       </div>
     </section>
   );
