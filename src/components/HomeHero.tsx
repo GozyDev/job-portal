@@ -1,6 +1,7 @@
-import { Search, MapPin, MoveRight} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Search, MapPin, MoveRight } from "lucide-react";
+
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -42,9 +43,12 @@ export default function Hero() {
           </div>
 
           {/* Search Button */}
-          <Button className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-7 rounded-xl text-md font-semibold transition-all hover:shadow-lg hover:shadow-blue-200">
-            FInd your job  <MoveRight />
-          </Button>
+          <Link
+            to="/jobs"
+            className="w-full flex items-center justify-center gap-2 text-sm md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-md font-semibold transition-all hover:shadow-lg hover:shadow-blue-200"
+          >
+            FInd your job <MoveRight size={20} />
+          </Link>
         </div>
         <p className="text-md text-slate-500 mt-5 max-w-2xl">
           The first global platform for health job seekers

@@ -5,20 +5,20 @@ import {
   SheetContent,
   SheetTrigger,
   SheetClose,
+  SheetHeader,
 } from "@/components/ui/sheet";
 
 export default function Navbar() {
   return (
     <div className="fixed top-0 left-0 w-full z-[999] bg-[#f7f7f7]">
       <nav className="flex items-center justify-between px-8 py-4 bg-[#f7f7f7] max-w-7xl mx-auto">
-        
         {/* Left Section: Logo and Desktop Nav Links */}
         <div className="flex items-center gap-10">
           {/* Logo */}
           <Link to="/" className="text-[#2563EB] text-2xl  tracking-tight">
             IDD LOGO
           </Link>
-          
+
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-6">
             <Link
@@ -54,20 +54,32 @@ export default function Navbar() {
                 <Menu size={24} />
               </button>
             </SheetTrigger>
-            
-            <SheetContent side="right" className="w-[300px] sm:w-[350px] bg-white pt-12">
-              {/* Note: Shadcn's SheetContent automatically includes an 'X' close button at the top right */}
-              
+
+            <SheetContent
+              side="right"
+              className="w-[300px] sm:w-[350px] bg-white pt-12"
+            >
+              <SheetHeader>
+                <p className="text-[#2563EB] text-2xl  tracking-tight">
+                  IDD LOGO
+                </p>
+              </SheetHeader>
               <div className="flex flex-col gap-8">
                 {/* Mobile Navigation Links */}
                 <div className="flex flex-col gap-4 p-3">
                   <SheetClose asChild>
-                    <Link to="/jobs" className="text-lg font-medium text-slate-800 hover:text-[#2563EB] transition-colors text-sm">
+                    <Link
+                      to="/jobs"
+                      className="text-lg font-medium text-slate-800 hover:text-[#2563EB] transition-colors text-sm"
+                    >
                       Find Jobs
                     </Link>
                   </SheetClose>
                   <SheetClose asChild>
-                    <Link to="/jobs" className="text-lg font-medium text-slate-800 hover:text-[#2563EB] transition-colors text-sm">
+                    <Link
+                      to="/jobs"
+                      className="text-lg font-medium text-slate-800 hover:text-[#2563EB] transition-colors text-sm"
+                    >
                       Job categories
                     </Link>
                   </SheetClose>
@@ -93,7 +105,6 @@ export default function Navbar() {
             </SheetContent>
           </Sheet>
         </div>
-
       </nav>
     </div>
   );
