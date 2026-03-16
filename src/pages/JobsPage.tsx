@@ -111,8 +111,8 @@ export default function JobsPage() {
   }
 
   return (
-    <section className="md:py-[100px] py-[50px] space-y-8">
-      <div className="w-7xl mx-auto">
+    <section className="py-[100px] space-y-8">
+      <div className="max-w-7xl mx-auto border">
         <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors "
