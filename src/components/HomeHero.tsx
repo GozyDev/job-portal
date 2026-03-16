@@ -45,7 +45,7 @@ export default function Hero() {
           {/* Search Button */}
           <Link
             to="/jobs"
-            className="w-full flex items-center justify-center gap-2 text-sm md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-md font-semibold transition-all hover:shadow-lg hover:shadow-blue-200"
+            className="w-full flex items-center justify-center gap-2  md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-md font-semibold transition-all hover:shadow-lg hover:shadow-blue-200"
           >
             FInd your job <MoveRight size={20} />
           </Link>

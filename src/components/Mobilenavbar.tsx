@@ -57,14 +57,14 @@ export default function Navbar() {
 
             <SheetContent
               side="right"
-              className="w-[300px] sm:w-[350px] bg-white pt-12"
+              className="w-[300px] sm:w-[350px] bg-white "
             >
               <SheetHeader>
-                <p className="text-[#2563EB] text-2xl  tracking-tight">
+                <p className="text-[#2563EB] text-2xl  tracking-tight absolute top-4">
                   IDD LOGO
                 </p>
               </SheetHeader>
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-8 pt-4 ">
                 {/* Mobile Navigation Links */}
                 <div className="flex flex-col gap-4 p-3">
                   <SheetClose asChild>
@@ -86,7 +86,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Divider */}
-                <div className="h-px w-full bg-slate-100" />
+                <div className="h-px w-full bg-slate-100 " />
 
                 {/* Mobile Actions */}
                 <div className="flex flex-col gap-4">
