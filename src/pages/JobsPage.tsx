@@ -14,11 +14,25 @@ export default function JobsPage() {
     experience: [] as string[],
     location: [] as string[],
   });
+  const [searchValue, setSearchValue] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     async function fetchJobs() {
-      const data = await getJobs();
-      setJobs(data);
+      try {
+        const data = await getJobs();
+        if (!data) {
+          console.log(data);
+          return;
+        } else {
+          setJobs(data);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
     }
     fetchJobs();
   }, []);
@@ -39,25 +53,25 @@ export default function JobsPage() {
   // Logic to handle Array-based "type" and String-based "experience"
   const filteredJobs = useMemo(() => {
     return jobs.filter((job: any) => {
-      // 1. Filter by Type (Match if ANY selected checkbox is in the job's type array)
+      const searchMatch =
+        !searchValue ||
+        job.companyName?.toLowerCase().includes(searchValue.toLowerCase());
+
       const typeMatch =
         activeFilters.type.length === 0 ||
         job.type.some((t: string) => activeFilters.type.includes(t));
 
-      // 2. Filter by Experience (Match if the job's experience string is in the selected list)
-      // Note: Using 'Experience' (Capitalized) to match your JSON return
       const expMatch =
         activeFilters.experience.length === 0 ||
         activeFilters.experience.includes(job.Experience || job.experience);
 
-      // 3. Filter by Location
       const locMatch =
         activeFilters.location.length === 0 ||
         activeFilters.location.includes(job.location);
 
-      return typeMatch && expMatch && locMatch;
+      return typeMatch && expMatch && searchMatch && locMatch;
     });
-  }, [jobs, activeFilters]);
+  }, [jobs, activeFilters, searchValue]);
 
   const filterCounts = useMemo(() => {
     const counts = {
@@ -84,9 +98,22 @@ export default function JobsPage() {
     ([category, values]) => values.map((val) => ({ category, val })),
   );
 
+  if (loading) {
+    return (
+      <section className="pt-[90px] py-[80px] h-[600px] items-center justify-center flex">
+        <p className="text-[#2563EB] text-2xl  tracking-tight animate-pulse ">
+          IDD LOGO
+        </p>
+      </section>
+    );
+  }
+
   return (
     <div className="max-w-7xl mx-auto space-y-8 md:py-[100px] py-[50px]">
-      <SearchHeader onSearch={() => {}} />
+      <SearchHeader
+        searchValue={searchValue}
+        onSearch={(val) => setSearchValue(val)}
+      />
 
       <section className="md:hidden px-3">
         <MobileFilters

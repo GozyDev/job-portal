@@ -54,7 +54,11 @@ export default function JobDetailsPage() {
 
   if (loading)
     return (
-      <div className="p-10 text-center my-[100px]">Loading job details...</div>
+      <section className="pt-[90px] py-[80px] h-[600px] items-center justify-center flex">
+        <p className="text-[#2563EB] text-2xl  tracking-tight animate-pulse ">
+          IDD LOGO
+        </p>
+      </section>
     );
   if (!job)
     return (
