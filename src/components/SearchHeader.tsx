@@ -8,7 +8,7 @@ export default function SearchHeader({
   searchValue,
 }: SearchHeaderProps) {
   return (
-    <div className="max-w-7xl mx-auto px-4 pt-16 pb-8 rounded text-center bg-[#f9fafc]">
+    <div className="max-w-7xl mx-auto px-4 pt-8 md:pt-16 pb-8 rounded text-center bg-[#f9fafc]">
       {/* Main Heading */}
       <h1 className="text-5xl font-bold text-slate-900 mb-4 tracking-tight">
         Find your{" "}

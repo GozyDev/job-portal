@@ -112,7 +112,7 @@ export default function JobsPage() {
 
   return (
     <section className="py-[100px] space-y-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-3">
         <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-slate-500 hover:text-blue-600 transition-colors "
@@ -121,7 +121,7 @@ export default function JobsPage() {
           <span>Go Back</span>
         </button>
       </div>
-      <div className="max-w-7xl mx-auto  ">
+      <div className="max-w-7xl mx-auto mt-0 ">
         <SearchHeader
           searchValue={searchValue}
           onSearch={(val) => setSearchValue(val)}
